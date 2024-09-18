@@ -18,12 +18,16 @@ function updateDisplay() {
 function calculate() {
     try {
         displayValue = displayValue.replace('%', '/100');
-        displayValue = `${eval(displayValue)}`;
+        let result = eval(displayValue);
+        // Round the result to 5 decimal places
+        result = Math.round(result * 100000) / 100000;
+        displayValue = `${result}`;
         updateDisplay();
     } catch (error) {
         display.innerText = 'Error';
     }
 }
+
 function backspace() {
     displayValue = displayValue.slice(0, -1);
     updateDisplay();
